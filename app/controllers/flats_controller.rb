@@ -1,5 +1,5 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: %i[ show ]
+  before_action :set_flat, only: %i[ show edit update destroy ]
   # get /flats
   def index
     @flats = Flat.all
@@ -14,9 +14,12 @@ class FlatsController < ApplicationController
     @flat = Flat.new
   end
 
+  def edit
+  end
+
   # post /flats
   def create
-    @flat = Flat.new(flat_param)
+    @flat = Flat.new(flat_params)
 
     if @flat.save
       redirect_to @flat, notice: "flat was successfully created!"
@@ -25,11 +28,8 @@ class FlatsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   # patch /flats/:id
-  def updated
+  def update
     if @flat.update(flat_params)
       redirect_to @flat, notice: "Flat was successfully updated!"
     else
@@ -43,7 +43,7 @@ class FlatsController < ApplicationController
     @flat = Flat.find(params[:id])
   end
 
-  def flat_param
+  def flat_params
     params.require(:flat).permit(:name, :address, :description, :number_of_guests, :price_per_night)
   end
 end
