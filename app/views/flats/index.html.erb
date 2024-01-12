@@ -1,4 +1,15 @@
+<nav class="navbar bg-body-tertiary" style="background-color: #f8f9fa;">
+  <div class="container-fluid">
+  <p class="mb-0">Simple Airbnb</p>
+  <button type="button" class="btn btn-outline-primary"><%= link_to 'Add Flat', new_flat_path %></button>
+  </div></nav>
+
 <div class="container">
-  <p>Simple Airbnb</p>
-  <button>Add Flat</button>
+<h1 class="mx-4 mt-3">All our flats (<%= @flats.count %>)</h1>
+<div class="container d-flex mt-3">
+  <% @flats.each do |flat| %>
+  <%= render flat %>
+  <% end %>
+</div>
+</div>
 </div>
